@@ -135,7 +135,6 @@ if ( ! function_exists ( 'gglmps_default_options' ) ) {
 				'alignment' => 'left',
 				'map_type'  => 'roadmap',
 				'tilt45'    => 1,
-				'auto_zoom' => 1,
 				'zoom'      => 3
 			),
 			'controls'              => array(
@@ -143,13 +142,7 @@ if ( ! function_exists ( 'gglmps_default_options' ) ) {
 				'pan'                 => 1,
 				'rotate'              => 1,
 				'zoom'                => 1,
-				'scale'               => 1,
-				'street_view'         => 1,
-				'overview_map'        => 0,
-				'overview_map_opened' => 0,
-				'double_click'        => 0,
-				'map_draggable'       => 1,
-				'scroll_wheel'        => 1
+				'scale'               => 1
 			)
 		);
 		if ( $wpmu == 1 ) {
@@ -226,7 +219,6 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 					'alignment' => isset( $_REQUEST['gglmps_basic_alignment'] ) ? $_REQUEST['gglmps_basic_alignment'] : $gglmps_default_options['basic']['alignment'],
 					'map_type'  => isset( $_REQUEST['gglmps_basic_map_type'] ) ? $_REQUEST['gglmps_basic_map_type'] : $gglmps_default_options['basic']['map_type'],
 					'tilt45'    => isset( $_REQUEST['gglmps_basic_tilt45'] ) ? 1 : 0,
-					'auto_zoom' => isset( $_REQUEST['gglmps_basic_auto_zoom'] ) ? 1 : 0,
 					'zoom'      => isset( $_REQUEST['gglmps_basic_zoom'] ) && is_numeric( $_REQUEST['gglmps_basic_zoom'] ) ? $_REQUEST['gglmps_basic_zoom'] : $gglmps_default_options['basic']['zoom']
 				),
 				'controls'           => array(
@@ -234,13 +226,7 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 					'pan'                 => isset( $_REQUEST['gglmps_control_pan'] ) ? 1 : 0,
 					'rotate'              => isset( $_REQUEST['gglmps_control_rotate'] ) ? 1 : 0,
 					'zoom'                => isset( $_REQUEST['gglmps_control_zoom'] ) ? 1 : 0,
-					'scale'               => isset( $_REQUEST['gglmps_control_scale'] ) ? 1 : 0,
-					'street_view'         => isset( $_REQUEST['gglmps_control_street_view'] ) ? 1 : 0,
-					'overview_map'        => isset( $_REQUEST['gglmps_control_overview_map'] ) ? 1 : 0,
-					'overview_map_opened' => isset( $_REQUEST['gglmps_control_overview_map_opened'] ) ? 1 : 0,
-					'double_click'        => isset( $_REQUEST['gglmps_control_double_click'] ) ? 0 : 1,
-					'map_draggable'       => isset( $_REQUEST['gglmps_control_map_draggable'] ) ? 1 : 0,
-					'scroll_wheel'        => isset( $_REQUEST['gglmps_control_scroll_wheel'] ) ? 1 : 0
+					'scale'               => isset( $_REQUEST['gglmps_control_scale'] ) ? 1 : 0
 				)
 			);
 			update_option( 'gglmps_options', $gglmps_options );
@@ -363,11 +349,6 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 							<tr valign="middle">
 								<th><label for="gglmps_basic_auto_zoom"><?php _e( 'Zoom', 'gglmps' ); ?></label></th>
 								<td>
-									<p class="gglmps-zoom-container">
-										<input id="gglmps_basic_auto_zoom" name="gglmps_basic_auto_zoom" type="checkbox" <?php if ( $gglmps_options['basic']['auto_zoom'] == 1 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_basic_auto_zoom"><?php _e( 'Auto', 'gglmps' ); ?></label>
-										<span class="gglmps_settings_tooltip"><?php _e( 'The map will be scaled to display all markers.', 'gglmps' ); ?></span>
-									</p>
 									<div id="gglmps_zoom_wrap">
 										<div id="gglmps_zoom_slider"></div>
 										<span id="gglmps_zoom_value"></span>
@@ -406,30 +387,6 @@ if ( ! function_exists( 'gglmps_settings_page' ) ) {
 									<p class="gglmps_settings_additional_option">
 										<input id="gglmps_control_scale" name="gglmps_control_scale" type="checkbox" <?php if ( $gglmps_options['controls']['scale'] == 1 ) echo 'checked="checked"'; ?> />
 										<label for="gglmps_control_scale"><?php _e( 'Scale', 'gglmps' ); ?></label>
-									</p>
-									<p class="gglmps_settings_additional_option">
-										<input id="gglmps_control_street_view" name="gglmps_control_street_view" type="checkbox" <?php if ( $gglmps_options['controls']['street_view'] == 1 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_control_street_view"><?php _e( 'Street View', 'gglmps' ); ?></label>
-									</p>
-									<p class="gglmps_settings_additional_option">
-										<input id="gglmps_control_overview_map" name="gglmps_control_overview_map" type="checkbox" <?php if ( $gglmps_options['controls']['overview_map'] == 1 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_control_overview_map"><?php _e( 'Overview Map', 'gglmps' ); ?></label>
-									</p>
-									<p class="gglmps_settings_additional_option">
-										<input id="gglmps_control_overview_map_opened" name="gglmps_control_overview_map_opened" type="checkbox" <?php if ( $gglmps_options['controls']['overview_map_opened'] == 1 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_control_overview_map_opened"><?php _e( 'Overview Map Opened', 'gglmps' ); ?></label>
-									</p>
-									<p class="gglmps_settings_additional_option">
-										<input id="gglmps_control_map_draggable" name="gglmps_control_map_draggable" type="checkbox" <?php if ( $gglmps_options['controls']['map_draggable'] == 1 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_control_map_draggable"><?php _e( 'Draggable', 'gglmps' ); ?></label>
-									</p>
-									<p class="gglmps_settings_additional_option">
-										<input id="gglmps_control_double_click" name="gglmps_control_double_click" type="checkbox" <?php if ( $gglmps_options['controls']['double_click'] == 0 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_control_double_click"><?php _e( 'Double Click', 'gglmps' ); ?></label>
-									</p>
-									<p class="gglmps_settings_additional_option">
-										<input id="gglmps_control_scroll_wheel" name="gglmps_control_scroll_wheel" type="checkbox" <?php if ( $gglmps_options['controls']['scroll_wheel'] == 1 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_control_scroll_wheel"><?php _e( 'Scroll Wheel', 'gglmps' ); ?></label>
 									</p>
 								</td>
 							</tr>
@@ -662,7 +619,6 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 						'alignment' => $gglmps_options['basic']['alignment'],
 						'map_type'  => $gglmps_options['basic']['map_type'],
 						'tilt45'    => $gglmps_options['basic']['tilt45'],
-						'auto_zoom' => $gglmps_options['basic']['auto_zoom'],
 						'zoom'      => $gglmps_options['basic']['zoom']
 					),
 					'controls'           => array(
@@ -670,13 +626,7 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 						'pan'                 => $gglmps_options['controls']['pan'],
 						'rotate'              => $gglmps_options['controls']['rotate'],
 						'zoom'                => $gglmps_options['controls']['zoom'],
-						'scale'               => $gglmps_options['controls']['scale'],
-						'street_view'         => $gglmps_options['controls']['street_view'],
-						'overview_map'        => $gglmps_options['controls']['overview_map'],
-						'overview_map_opened' => $gglmps_options['controls']['overview_map_opened'],
-						'double_click'        => $gglmps_options['controls']['double_click'],
-						'map_draggable'       => $gglmps_options['controls']['map_draggable'],
-						'scroll_wheel'        => $gglmps_options['controls']['scroll_wheel'],
+						'scale'               => $gglmps_options['controls']['scale']
 					),
 					'markers' => array()
 				);
@@ -694,7 +644,6 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 							'alignment' => isset( $_REQUEST['gglmps_basic_alignment'] ) ? $_REQUEST['gglmps_basic_alignment'] : 'left',
 							'map_type'  => isset( $_REQUEST['gglmps_basic_map_type'] ) ? $_REQUEST['gglmps_basic_map_type'] : 'roadmap',
 							'tilt45'    => isset( $_REQUEST['gglmps_basic_tilt45'] ) ? 1 : 0,
-							'auto_zoom' => isset( $_REQUEST['gglmps_basic_auto_zoom'] ) ? 1 : 0,
 							'zoom'      => isset( $_REQUEST['gglmps_basic_zoom'] ) && is_numeric( $_REQUEST['gglmps_basic_zoom'] ) ? $_REQUEST['gglmps_basic_zoom'] : $gglmps_options['basic']['zoom']
 						),
 						'controls'           => array(
@@ -702,13 +651,7 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 							'pan'                 => isset( $_REQUEST['gglmps_control_pan'] ) ? 1 : 0,
 							'rotate'              => isset( $_REQUEST['gglmps_control_rotate'] ) ? 1 : 0,
 							'zoom'                => isset( $_REQUEST['gglmps_control_zoom'] ) ? 1 : 0,
-							'scale'               => isset( $_REQUEST['gglmps_control_scale'] ) ? 1 : 0,
-							'street_view'         => isset( $_REQUEST['gglmps_control_street_view'] ) ? 1 : 0,
-							'overview_map'        => isset( $_REQUEST['gglmps_control_overview_map'] ) ? 1 : 0,
-							'overview_map_opened' => isset( $_REQUEST['gglmps_control_overview_map_opened'] ) ? 1 : 0,
-							'double_click'        => isset( $_REQUEST['gglmps_control_double_click'] ) ? 0 : 1,
-							'map_draggable'       => isset( $_REQUEST['gglmps_control_map_draggable'] ) ? 1 : 0,
-							'scroll_wheel'        => isset( $_REQUEST['gglmps_control_scroll_wheel'] ) ? 1 : 0
+							'scale'               => isset( $_REQUEST['gglmps_control_scale'] ) ? 1 : 0
 						),
 						'markers' => array()
 					);
@@ -745,7 +688,6 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 							'alignment' => isset( $_REQUEST['gglmps_basic_alignment'] ) ? $_REQUEST['gglmps_basic_alignment'] : 'left',
 							'map_type'  => isset( $_REQUEST['gglmps_basic_map_type'] ) ? $_REQUEST['gglmps_basic_map_type'] : 'roadmap',
 							'tilt45'    => isset( $_REQUEST['gglmps_basic_tilt45'] ) ? 1 : 0,
-							'auto_zoom' => isset( $_REQUEST['gglmps_basic_auto_zoom'] ) ? 1 : 0,
 							'zoom'      => isset( $_REQUEST['gglmps_basic_zoom'] ) && is_numeric( $_REQUEST['gglmps_basic_zoom'] ) ? $_REQUEST['gglmps_basic_zoom'] : $gglmps_options['basic']['zoom']
 						),
 						'controls'           => array(
@@ -753,13 +695,7 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 							'pan'                 => isset( $_REQUEST['gglmps_control_pan'] ) ? 1 : 0,
 							'rotate'              => isset( $_REQUEST['gglmps_control_rotate'] ) ? 1 : 0,
 							'zoom'                => isset( $_REQUEST['gglmps_control_zoom'] ) ? 1 : 0,
-							'scale'               => isset( $_REQUEST['gglmps_control_scale'] ) ? 1 : 0,
-							'street_view'         => isset( $_REQUEST['gglmps_control_street_view'] ) ? 1 : 0,
-							'overview_map'        => isset( $_REQUEST['gglmps_control_overview_map'] ) ? 1 : 0,
-							'overview_map_opened' => isset( $_REQUEST['gglmps_control_overview_map_opened'] ) ? 1 : 0,
-							'double_click'        => isset( $_REQUEST['gglmps_control_double_click'] ) ? 0 : 1,
-							'map_draggable'       => isset( $_REQUEST['gglmps_control_map_draggable'] ) ? 1 : 0,
-							'scroll_wheel'        => isset( $_REQUEST['gglmps_control_scroll_wheel'] ) ? 1 : 0
+							'scale'               => isset( $_REQUEST['gglmps_control_scale'] ) ? 1 : 0
 						),
 						'markers' => array()
 					);
@@ -950,11 +886,6 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 							<tr valign="middle">
 								<th><label for="gglmps_basic_auto_zoom"><?php _e( 'Zoom', 'gglmps' ); ?></label></th>
 								<td>
-									<p class="gglmps-zoom-container">
-										<input id="gglmps_basic_auto_zoom" name="gglmps_basic_auto_zoom" type="checkbox" <?php if ( $gglmps_map_data['basic']['auto_zoom'] == 1 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_basic_auto_zoom"><?php _e( 'Auto', 'gglmps' ); ?></label>
-										<span class="gglmps_editor_tooltip"><?php _e( 'The map will be scaled to display all markers.', 'gglmps' ); ?></span>
-									</p>
 									<div id="gglmps_zoom_wrap">
 										<div id="gglmps_zoom_slider"></div>
 										<span id="gglmps_zoom_value"></span>
@@ -998,30 +929,6 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 										<input id="gglmps_control_scale" name="gglmps_control_scale" type="checkbox" <?php if ( $gglmps_map_data['controls']['scale'] == 1 ) echo 'checked="checked"'; ?> />
 										<label for="gglmps_control_scale"><?php _e( 'Scale', 'gglmps' ); ?></label>
 									</p>
-									<p class="gglmps_editor_additional_option">
-										<input id="gglmps_control_street_view" name="gglmps_control_street_view" type="checkbox" <?php if ( $gglmps_map_data['controls']['street_view'] == 1 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_control_street_view"><?php _e( 'Street View', 'gglmps' ); ?></label>
-									</p>
-									<p class="gglmps_editor_additional_option">
-										<input id="gglmps_control_overview_map" name="gglmps_control_overview_map" type="checkbox" <?php if ( $gglmps_map_data['controls']['overview_map'] == 1 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_control_overview_map"><?php _e( 'Overview Map', 'gglmps' ); ?></label>
-									</p>
-									<p class="gglmps_editor_additional_option">
-										<input id="gglmps_control_overview_map_opened" name="gglmps_control_overview_map_opened" type="checkbox" <?php if ( $gglmps_map_data['controls']['overview_map_opened'] == 1 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_control_overview_map_opened"><?php _e( 'Overview Map Opened', 'gglmps' ); ?></label>
-									</p>
-									<p class="gglmps_editor_additional_option">
-										<input id="gglmps_control_map_draggable" name="gglmps_control_map_draggable" type="checkbox" <?php if ( $gglmps_map_data['controls']['map_draggable'] == 1 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_control_map_draggable"><?php _e( 'Draggable', 'gglmps' ); ?></label>
-									</p>
-									<p class="gglmps_editor_additional_option">
-										<input id="gglmps_control_double_click" name="gglmps_control_double_click" type="checkbox" <?php if ( $gglmps_map_data['controls']['double_click'] == 0 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_control_double_click"><?php _e( 'Double Click', 'gglmps' ); ?></label>
-									</p>
-									<p class="gglmps_editor_additional_option">
-										<input id="gglmps_control_scroll_wheel" name="gglmps_control_scroll_wheel" type="checkbox" <?php if ( $gglmps_map_data['controls']['scroll_wheel'] == 1 ) echo 'checked="checked"'; ?> />
-										<label for="gglmps_control_scroll_wheel"><?php _e( 'Scroll Wheel', 'gglmps' ); ?></label>
-									</p>
 								</td>
 							</tr>
 						</tbody>
@@ -1034,9 +941,6 @@ if ( ! function_exists( 'gglmps_editor_page' ) ) {
 					</p>
 				</form><!-- #gglmps_editor_form -->
 			</div><!-- #gglmps_editor_settings -->
-			<div id="gglmps_editor_preview" style="width: <?php echo $gglmps_map_data['basic']['width']; ?>px; height: <?php echo $gglmps_map_data['basic']['height']; ?>px;">
-				<div id="gglmps_editor_preview_wrap" style="width: <?php echo $gglmps_map_data['basic']['width']; ?>px; height: <?php echo $gglmps_map_data['basic']['height']; ?>px;"><div id="gglmps_editor_map"></div></div>
-			</div>
 		</div><!-- #gglmps_editor_wrap -->
 	<?php }
 }

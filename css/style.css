@@ -137,7 +137,7 @@
 }
 #gglmps_zoom_wrap {
 	position: relative;
-	margin: 40px 0 0;
+	margin: 0;
 	padding: 0 0 0 35px;
 	width: 165px;
 }
@@ -191,15 +191,6 @@
 	min-height: 150px;
 	line-height: 1.35;
 	float: left;
-}
-#gglmps_editor_preview_wrap {
-	position: fixed;
-	min-width: 150px;
-	max-width: 100%;
-	min-height: 150px;
-	border: 1px solid #ddd;
-	background: #fff;
-    z-index: 1;
 }
 #gglmps_editor_map {
 	position: absolute;
