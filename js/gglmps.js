@@ -13,12 +13,12 @@
 				'rotateControl'             : gglmps_map_data['controls']['rotate'] ? true : false,
 				'zoomControl'               : gglmps_map_data['controls']['zoom'] ? true : false,
 				'scaleControl'              : gglmps_map_data['controls']['scale'] ? true : false,
-				'streetViewControl'         : gglmps_map_data['controls']['street_view'] ? true : false,
-				'overviewMapControl'        : gglmps_map_data['controls']['overview_map'] ? true : false,
-				'overviewMapControlOptions' : { opened : gglmps_map_data['controls']['overview_map_opened'] ? true : false },
-				'draggable'                 : gglmps_map_data['controls']['double_click'] ? false : true,
-				'disableDoubleClickZoom'    : gglmps_map_data['controls']['map_draggable'] ? true : false,
-				'scrollwheel'               : gglmps_map_data['controls']['scroll_wheel'] ? true : false
+				'streetViewControl'         : false,
+				'overviewMapControl'        : false,
+				'overviewMapControlOptions' : false,
+				'draggable'                 : false,
+				'disableDoubleClickZoom'    : false,
+				'scrollwheel'               : false
 			});
 			// Add markers to the Google Map
 			$( '#' + gglmps_map_data['container'] ).bws_googlemaps( 'addMarker', new function() {
