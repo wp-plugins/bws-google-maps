@@ -1,5 +1,5 @@
 === BestWebSoft Google Maps ===
-Contributors: BestWebSoft
+Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=10&product_id=13
 Tags: google map, google maps, google maps shortcode map, geo, geoceoder, widget map, custom marker, marker tooltip, wp google map, wp google maps, wp map, wp maps
 Requires at least: 3.3
