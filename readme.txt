@@ -14,6 +14,8 @@ Easy to set up and insert Google Maps to your website.
 
 This plugin allows you to configure Google Maps and add them to your site quickly and easily. In the Google Maps Editor, you can configure basic settings and add any number of markers. In the Google Maps manager you can view the saved maps and edit them easily. With the help of the shortcode you can insert Google maps in posts and the widgets.
 
+https://www.youtube.com/watch?v=F0YonG9-rus
+
 <a href="http://wordpress.org/plugins/bws-google-maps/faq/" target="_blank">FAQ</a>
 
 <a href="http://support.bestwebsoft.com" target="_blank">Support</a>
